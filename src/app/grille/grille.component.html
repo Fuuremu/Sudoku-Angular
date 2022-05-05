@@ -1,9 +1,7 @@
-<div><app-case></app-case>
-<app-case></app-case>
-<app-case></app-case><br>
-<app-case></app-case>
-<app-case></app-case>
-<app-case></app-case><br>
-<app-case></app-case>
-<app-case></app-case>
-<app-case></app-case><br></div>
+<div class="container">
+    <div class="row center" *ngFor="let obj of matrice; let x = index;">
+      <div class="col-sm-auto p-0" *ngFor="let keyValues of obj; let y = index;">
+        <input  class="default" id="{{'card' + x + '-' + y}}" [(ngModel)]="grille[x][y]" (change)="verifNombre(x,y,grille[x][y])">
+      </div>
+    </div>
+</div>

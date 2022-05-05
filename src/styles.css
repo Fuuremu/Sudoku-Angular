@@ -1,10 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
-input{
-    width:27px;
+input {
+  width: 27px;
 }
-.carre{
-    margin-left: auto;
-    margin-right: auto;
-    width: 85px;
-    border: 2px solid black;
+
+.carre {
+  margin-left: auto;
+  margin-right: auto;
+  width: 85px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+app-grille {
+  width: 85px;
+  border: 2px solid black;
+}
+
+.default {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#card0-0,
+#card0-1,
+#card0-2,
+#card0-3,
+#card0-4,
+#card0-5,
+#card0-6,
+#card0-7,
+#card0-8,
+#card3-0,
+#card3-1,
+#card3-2,
+#card3-3,
+#card3-4,
+#card3-5,
+#card3-6,
+#card3-7,
+#card3-8,
+#card6-0,
+#card6-1,
+#card6-2,
+#card6-3,
+#card6-4,
+#card6-5,
+#card6-6,
+#card6-7,
+#card6-8 {
+  border-top: 2px solid black;
+}
+
+#card2-0,
+#card2-1,
+#card2-2,
+#card2-3,
+#card2-4,
+#card2-5,
+#card2-6,
+#card2-7,
+#card2-8,
+#card5-0,
+#card5-1,
+#card5-2,
+#card5-3,
+#card5-4,
+#card5-5,
+#card5-6,
+#card5-7,
+#card5-8,
+#card8-0,
+#card8-1,
+#card8-2,
+#card8-3,
+#card8-4,
+#card8-5,
+#card8-6,
+#card8-7,
+#card8-8 {
+  border-bottom: 2px solid black;
+}
+
+#card0-0, 
+#card1-0,
+#card2-0,
+#card3-0,
+#card4-0,
+#card5-0,
+#card6-0,
+#card7-0,
+#card8-0, 
+#card0-3, 
+#card1-3,
+#card2-3,
+#card3-3,
+#card4-3,
+#card5-3,
+#card6-3,
+#card7-3,
+#card8-3, 
+#card0-6, 
+#card1-6,
+#card2-6,
+#card3-6,
+#card4-6,
+#card5-6,
+#card6-6,
+#card7-6,
+#card8-6 {
+    border-left: 2px solid black
+}
+
+#card0-2, 
+#card1-2,
+#card2-2,
+#card3-2,
+#card4-2,
+#card5-2,
+#card6-2,
+#card7-2,
+#card8-2, 
+#card0-5, 
+#card1-5,
+#card2-5,
+#card3-5,
+#card4-5,
+#card5-5,
+#card6-5,
+#card7-5,
+#card8-5, 
+#card0-8, 
+#card1-8,
+#card2-8,
+#card3-8,
+#card4-8,
+#card5-8,
+#card6-8,
+#card7-8,
+#card8-8 {
+    border-right: 2px solid black;
 }
