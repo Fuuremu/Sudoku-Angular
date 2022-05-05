@@ -11,16 +11,14 @@ input {
   text-align: center;
 }
 
-app-grille {
-  width: 85px;
-  border: 2px solid black;
-}
-
 .default {
   width: 30px;
   height: 30px;
   border: 1px solid black;
   text-align: center;
+}
+#grille{
+    max-width: 270px;
 }
 
 #card0-0,
