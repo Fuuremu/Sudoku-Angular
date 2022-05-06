@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GrilleComponent } from './grille/grille.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'jeu', component: GrilleComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
