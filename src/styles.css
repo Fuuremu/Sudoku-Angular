@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-input {
-  width: 27px;
-}
+/* l div du formulaire user.component.html */
+.Saisie {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    width: 200px;
+    height: 40px;
+  }
+
 
 .carre {
   margin-left: auto;
