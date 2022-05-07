@@ -12,12 +12,12 @@ import { GrilleComponent } from './grille/grille.component';
   declarations: [
     AppComponent,
     UserComponent,
+    GrilleComponent, 
     TimerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GrilleComponent, 
     FormsModule
   ],
   
