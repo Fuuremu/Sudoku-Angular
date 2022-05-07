@@ -8,14 +8,16 @@ import { timer } from 'rxjs';
 })
 export class TimerComponent {
   subscribeTimer: any;
-  timeLeft: number = 60;
+  timeLeft: number = 0;
   constructor() { }
-
+  ngOnInit(): void {
+    this.startTimer();
+  }
   startTimer() {
     const source = timer(1000, 2000);
     const abc = source.subscribe(val => {
-      console.log(val, '-');
-      this.subscribeTimer = this.timeLeft - val;
+      console.log(val);
+      this.subscribeTimer = this.timeLeft + val;
     });
   }
   
