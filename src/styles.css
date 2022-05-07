@@ -6,4 +6,145 @@
     margin-top: 10%;
     width: 200px;
     height: 40px;
+  }
+input {
+  width: 27px;
+}
+
+.carre {
+  margin-left: auto;
+  margin-right: auto;
+  width: 85px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.default {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  text-align: center;
+}
+#grille{
+    max-width: 270px;
+}
+
+#case0-0,
+#case0-1,
+#case0-2,
+#case0-3,
+#case0-4,
+#case0-5,
+#case0-6,
+#case0-7,
+#case0-8,
+#case3-0,
+#case3-1,
+#case3-2,
+#case3-3,
+#case3-4,
+#case3-5,
+#case3-6,
+#case3-7,
+#case3-8,
+#case6-0,
+#case6-1,
+#case6-2,
+#case6-3,
+#case6-4,
+#case6-5,
+#case6-6,
+#case6-7,
+#case6-8 {
+  border-top: 2px solid black;
+}
+
+#case2-0,
+#case2-1,
+#case2-2,
+#case2-3,
+#case2-4,
+#case2-5,
+#case2-6,
+#case2-7,
+#case2-8,
+#case5-0,
+#case5-1,
+#case5-2,
+#case5-3,
+#case5-4,
+#case5-5,
+#case5-6,
+#case5-7,
+#case5-8,
+#case8-0,
+#case8-1,
+#case8-2,
+#case8-3,
+#case8-4,
+#case8-5,
+#case8-6,
+#case8-7,
+#case8-8 {
+  border-bottom: 2px solid black;
+}
+
+#case0-0, 
+#case1-0,
+#case2-0,
+#case3-0,
+#case4-0,
+#case5-0,
+#case6-0,
+#case7-0,
+#case8-0, 
+#case0-3, 
+#case1-3,
+#case2-3,
+#case3-3,
+#case4-3,
+#case5-3,
+#case6-3,
+#case7-3,
+#case8-3, 
+#case0-6, 
+#case1-6,
+#case2-6,
+#case3-6,
+#case4-6,
+#case5-6,
+#case6-6,
+#case7-6,
+#case8-6 {
+    border-left: 2px solid black
+}
+
+#case0-2, 
+#case1-2,
+#case2-2,
+#case3-2,
+#case4-2,
+#case5-2,
+#case6-2,
+#case7-2,
+#case8-2, 
+#case0-5, 
+#case1-5,
+#case2-5,
+#case3-5,
+#case4-5,
+#case5-5,
+#case6-5,
+#case7-5,
+#case8-5, 
+#case0-8, 
+#case1-8,
+#case2-8,
+#case3-8,
+#case4-8,
+#case5-8,
+#case6-8,
+#case7-8,
+#case8-8 {
+    border-right: 2px solid black;
 }
