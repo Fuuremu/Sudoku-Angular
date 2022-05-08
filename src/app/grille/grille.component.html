@@ -2,7 +2,7 @@
 <div id="grille" class="container position-absolute top-50 start-50 translate-middle">
     <div class="row center" *ngFor="let obj of matrice; let x = index;">
       <div class="col-sm-auto p-0" *ngFor="let keyValues of obj; let y = index;">
-        <input  class="default" id="{{'case' + x + '-' + y}}" [(ngModel)]="grille[x][y]" (change)="verifNombre(x,y,grille[x][y])">
+        <input  class="default" id="{{'case' + x + '-' + y}}" [(ngModel)]="this.matriceService.grille[x][y]" (change)="verifNombre(x,y,this.matriceService.grille[x][y])">
       </div>
     </div>
 </div>
