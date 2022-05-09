@@ -26,6 +26,12 @@
 #grille{
     max-width: 270px;
 }
+.gras{
+  font-weight: bold;
+}
+.erreur{
+  color: red;
+}
 
 #case0-0,
 #case0-1,
