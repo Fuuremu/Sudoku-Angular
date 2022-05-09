@@ -41,7 +41,9 @@ export class GrilleComponent implements OnInit {
   startGame() {
 
   }
-
+getGrille(x: number,y: number){
+  return this.matriceService.getGrille(x, y);
+}
   verifNombre(x: number, y: number, nbr: string) {
     console.log(this.matriceService.grille, this.solution);
 

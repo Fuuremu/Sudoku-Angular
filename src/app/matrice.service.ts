@@ -29,7 +29,9 @@ export class MatriceService {
   getMatrice() {
     return this.matrice;
   }
-
+  getGrille(x: number, y: number){
+    return this.grille[x][y];
+  }
   createMatrice() {
     this.matrice = [];
     for (let x = 0; x < 9; x++) {
