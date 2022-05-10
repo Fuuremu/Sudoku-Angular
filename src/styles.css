@@ -33,6 +33,20 @@
   color: red;
 }
 
+body {
+  color:black;
+  background-color:white;
+  background-image:url(images/Accueil.jpg);
+  background-repeat:no-repeat;
+  background-position:50% 20%;
+  }
+
+  .MonBoutton {
+    font-size : 20px;
+    margin-left: 48%;
+    margin-top: 15%;
+  }
+
 #case0-0,
 #case0-1,
 #case0-2,
