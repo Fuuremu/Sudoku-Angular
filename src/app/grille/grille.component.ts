@@ -79,7 +79,6 @@ export class GrilleComponent {
     }
 
     if (this.var) {
-      console.log("fini !");
       //if joueur 1 -> Restart game
       if (this.partie1Jouee == false) {
         this.joueur1.setScoreJoueur(this.temps + this.erreurs[0] * 60);
@@ -90,9 +89,6 @@ export class GrilleComponent {
         this.joueur2.setScoreJoueur(this.temps + this.erreurs[1] * 60);
         this.endGame();
       }
-    }
-    else {
-      console.log('c\'est pas bon askip')
     }
   }
 
@@ -107,7 +103,6 @@ export class GrilleComponent {
 
 
     if (!(testligne && testcolonne && testCase)) {
-      console.log("erreur");
       let caseSudoku = document.getElementById(`case${x}-${y}`)
       if (caseSudoku) {
         //Ajout classe erreur (affichage en rouge)
@@ -139,7 +134,6 @@ export class GrilleComponent {
       if (this.matriceService.grille[x][i] == nbr) {
         if (i != y) {
           retour = false;
-          console.log("erreur ligne")
         }
       }
     }
@@ -153,7 +147,6 @@ export class GrilleComponent {
       if (this.matriceService.grille[i][y] == nbr) {
         if (i != x) {
           retour = false;
-          console.log("erreur colonne")
         }
       }
     }
@@ -179,7 +172,6 @@ export class GrilleComponent {
         if (this.matriceService.grille[cosX][cosY] == nbr) {
           if (cosX != x && cosY != y) {
             retour = false;
-            console.log("erreur case")
           }
         }
       }
