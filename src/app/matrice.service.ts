@@ -54,7 +54,7 @@ export class MatriceService {
       this.grille[x] = new Array(9);
       for (let y = 0; y < 9; y++) {
 
-        if (Math.random() < 0.95) {
+        if (Math.random() < 0.45) {
           console.log("yolo");
           this.grille[x][y] = this.solution[x][y];
           this.ajoutAttibutClass(x,y);

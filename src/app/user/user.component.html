@@ -1,11 +1,8 @@
 
-<form class="Saisie" #form="ngForm" (ngSubmit)="onSubmit(form)" novalidatea>
-    <br>
+<form class="Saisie bg-light bg-gradient" #form="ngForm" (ngSubmit)="onSubmit(form)" novalidatea>
     <label for="username1">Joueur 1 : </label><br>
     <input type="text" id="saisiUser1" name="username1" ngModel required #first="ngModel"><br><br>
     <label for="username2">Joueur 2 : </label><br>
     <input type="text" id="saisiUser2" name="username2" ngModel required #second="ngModel"><br><br>
     <button type="submit" class="btn btn-primary">Commencer une partie</button>
-    <!-- Routing -->
-    <!-- <a routerLink="/USERS"></a> -->
 </form>

@@ -4,8 +4,7 @@ import { UserComponent } from './user/user.component';
 import { GrilleComponent } from './grille/grille.component';
 
 const routes: Routes = [
-  {path: '', component: UserComponent },
-  {path: 'jeu', component: GrilleComponent}
+  {path: '', component: GrilleComponent}
 ]
 
 

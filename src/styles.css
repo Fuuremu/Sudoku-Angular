@@ -4,8 +4,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 10%;
-    width: 200px;
-    height: 40px;
+    width: 230px;
+    padding: 10px;
   }
 
 
@@ -24,7 +24,8 @@
   text-align: center;
 }
 #grille{
-    max-width: 270px;
+    max-width: 300px;
+    padding: 13px;
 }
 .gras{
   font-weight: bold;
@@ -32,15 +33,27 @@
 .erreur{
   color: red;
 }
-
+div.row.center > button{
+  margin-top: 15px;
+}
+#grille>div{
+  margin:0;
+}
+#lesJoueurs, 
+#finGame{
+  text-align: center;
+}
 body {
   color:black;
-  background-color:white;
-  background-image:url(images/Accueil.jpg);
+  background-color:#383e42!important;
+  background-image:url(images/Accueil.png);
   background-repeat:no-repeat;
   background-position:50% 20%;
   }
-
+.Saisie>input, 
+.Saisie>button{
+  width:100%;
+}
   .MonBoutton {
     font-size : 20px;
     margin-left: 48%;
