@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 // import { EventEmitter } from 'stream';
 
 @Component({
@@ -8,10 +8,23 @@ import {Router } from '@angular/router';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent   {
+export class UserComponent implements OnInit {
+  
+
+
   myD!: string[];
 
-  constructor(private router: Router){};
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { };
+
+
+ngOnInit(): void {
+    
+  }
+
+
 
   @Output()
   sendRequestToFather = new EventEmitter();

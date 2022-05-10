@@ -1,9 +1,32 @@
-<app-timer></app-timer>
 
-<div id="grille" class="container position-absolute top-50 start-50 translate-middle">
-    <div class="row center" *ngFor="let obj of matrice; let x = index;">
-      <div class="col-sm-auto p-0" *ngFor="let keyValues of obj; let y = index;">
-        <input  class="default" id="{{'case' + x + '-' + y}}" [(ngModel)]="this.matriceService.grille[x][y]" (change)="verifNombre(x,y,this.matriceService.grille[x][y])">
+<div *ngIf="partieFinie; then finDePartie else lejeu"></div>
+  <ng-template #finDePartie>
+      {{partieFinie}}
+      {{messageFin}}
+    </ng-template>
+    <ng-template #lejeu>
+      <div *ngIf="!partieEnCours; then formulaire else jeu"></div>
+<ng-template #formulaire>
+  
+  <app-user (sendRequestToFather)="sendData($event)"></app-user>
+</ng-template>
+<div>
+  <ng-template #jeu>
+    <p>{{temps}}</p>
+    <div id="grille" class="container position-absolute top-50 start-50 translate-middle">
+      <div class="row center" *ngFor="let obj of matrice; let x = index;">
+        <div class="col-sm-auto p-0" *ngFor="let keyValues of obj; let y = index;">
+          <input class="default" id="{{'case' + x + '-' + y}}" [(ngModel)]="this.matriceService.grille[x][y]"
+            (change)="verifNombre(x,y,this.matriceService.grille[x][y])">
+        </div>
       </div>
+      
     </div>
+    {{joueur1.getNomJoueur()}}
+      {{joueur2.getNomJoueur()}}
+      {{partie1Jouee}}
+      <button (click)="verifSolution()"> Vérifier</button>
+  </ng-template>
 </div>
+    </ng-template>
+

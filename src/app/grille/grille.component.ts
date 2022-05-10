@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatriceService } from '../matrice.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { joueur } from '../joueur';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-grille',
@@ -9,11 +12,25 @@ import { MatriceService } from '../matrice.service';
 export class GrilleComponent implements OnInit {
   matrice: string[][] = this.matriceService.getMatrice();
   coordMine!: number[][];
-  constructor(public matriceService: MatriceService) { }
+  partieEnCours: boolean = false;
+  joueur1!: joueur;
+  joueur2!: joueur;
+  var: Boolean = true;
+  partie1Jouee: Boolean = false;
+  partieFinie: Boolean = false;
+  erreurs: number[]=[0,0];
+  messageFin!:string;
+
+  //Timer
+  temps: number = 0;
+  timeLeft: number = 0;
+
+  constructor(public matriceService: MatriceService,
+    private route: ActivatedRoute) { }
 
   solution: string[][] = [
-    ['3','4', '9', '8', '1', '7', '5', '6', '2'],
-    ['5', '8', '6', '4', '2','3', '9', '7', '1'],
+    ['3', '4', '9', '8', '1', '7', '5', '6', '2'],
+    ['5', '8', '6', '4', '2', '3', '9', '7', '1'],
     ['2', '1', '7', '5', '6', '9', '8', '4', '3'],
     ['8', '6', '1', '7', '3', '4', '2', '9', '5'],
     ['9', '2', '3', '1', '5', '6', '4', '8', '7'],
@@ -34,61 +51,122 @@ export class GrilleComponent implements OnInit {
     []
   ];*/
   ngOnInit(): void {
-    this.startGame();
-    this.matriceService.grille = this.matriceService.genererGrille();
+    //this.startGame();
+    
+
+
   }
 
   startGame() {
+    this.matriceService.grille = this.matriceService.genererGrille();
+    this.startTimer()
+  }
+  restartGame() {
+    this.matriceService.grille = this.matriceService.genererGrille();
+    this.partie1Jouee = true;
+    this.temps = 0
+    
+  }
+  endGame() {
+    this.partieFinie = true;
+    if(this.joueur1.getScoreJoueur() < this.joueur2.getScoreJoueur())
+    {
+      this.messageFin = "Le joueur " + this.joueur1.getNomJoueur() + "a gagné !"
+    }
+    else{
+      this.messageFin = "Le joueur " + this.joueur2.getNomJoueur() + "a gagné !"
+    }
 
   }
-getGrille(x: number,y: number){
-  return this.matriceService.getGrille(x, y);
-}
-  verifNombre(x: number, y: number, nbr: string) {
-    console.log(this.matriceService.grille, this.solution);
 
-    //Si la grille est complète
-    if (this.matriceService.grille == this.solution) {
+  startTimer() {
+    this.temps=0;
+    const source = timer(1000, 2000);
+    source.subscribe(val => {
+      console.log(val);
+      this.temps++;
+    });
+  }
+
+  sendData(value: string) {
+    this.joueur1 = new joueur(value[0]);
+    this.joueur2 = new joueur(value[1]);
+    this.joueur1.setScoreJoueur(0);
+    this.joueur2.setScoreJoueur(0);
+    this.partieEnCours = true;
+
+    console.log(this.joueur1.getNomJoueur());
+    this.startGame();
+  }
+  getGrille(x: number, y: number) {
+    return this.matriceService.getGrille(x, y);
+  }
+  verifSolution() {
+
+    for (let x = 0; x < 9; x++) {
+      for (let y = 0; y < 9; y++) {
+        if (this.matriceService.grille[x][y] != this.matriceService.solution[x][y]) {
+          this.var = false;
+        }
+      }
+    }
+
+    if (this.var) {
       console.log("fini !");
+      if (this.partie1Jouee == false) {
+        this.joueur1.setScoreJoueur(this.temps + this.erreurs[0]*60);
+        this.restartGame();
+        
+      }
+      else {
+        
+        this.joueur2.setScoreJoueur(this.temps + this.erreurs[1]*60);
+        this.endGame();
+      }
       //if joueur 1 -> Restart game
       //if joueur 2 -> Fin game
     }
-    //Si la grille n'est pas complète
     else {
-      //Test ligne
-      let testligne: boolean = this.verifLigne(x, y, nbr);
-      //Test colonne
-      let testcolonne: boolean = this.verifColonne(x, y, nbr);
-      //Test case
-      let testCase: boolean = this.verifCase(x, y, nbr);
-
-
-      if (!(testligne && testcolonne && testCase)) {
-        console.log("erreur");
-        let caseSudoku = document.getElementById(`case${x}-${y}`)
-        if (caseSudoku) {
-          caseSudoku.classList.add('erreur');
-        }
-        //Ajout classe erreur (affichage en rouge)
-      }
-      else {
-        let caseSudoku = document.getElementById(`case${x}-${y}`)
-        if (caseSudoku) {
-          if (caseSudoku.classList.contains('erreur')) {
-            caseSudoku.classList.remove('erreur');
-          }
-        }
-      }
-      /*if (nbr == this.solution[x][y]) {
-        console.log("Correct !")
-      }
-      else {
-        console.log("Incorrect !")
-      }*/
+      console.log('c\'est pas bon askip')
     }
+  }
 
 
 
+  verifNombre(x: number, y: number, nbr: string) {
+    console.log(this.matriceService.grille, this.solution);
+
+    //Test ligne
+    let testligne: boolean = this.verifLigne(x, y, nbr);
+    //Test colonne
+    let testcolonne: boolean = this.verifColonne(x, y, nbr);
+    //Test case
+    let testCase: boolean = this.verifCase(x, y, nbr);
+
+
+    if (!(testligne && testcolonne && testCase)) {
+      console.log("erreur");
+      let caseSudoku = document.getElementById(`case${x}-${y}`)
+      if (caseSudoku) {
+        caseSudoku.classList.add('erreur');
+      }
+      //Ajout classe erreur (affichage en rouge)
+      if (this.partie1Jouee)
+      {
+        this.erreurs[0]++;
+      }
+      else{
+        this.erreurs[1]++;
+      }
+    }
+    else {
+      let caseSudoku = document.getElementById(`case${x}-${y}`)
+      if (caseSudoku) {
+        if (caseSudoku.classList.contains('erreur')) {
+          caseSudoku.classList.remove('erreur');
+        }
+      }
+    }
   }
 
   verifLigne(x: number, y: number, nbr: string) {
@@ -104,7 +182,8 @@ getGrille(x: number,y: number){
     }
     return retour;
   }
-  verifColonne(x: number, y: number, nbr:string) {
+
+  verifColonne(x: number, y: number, nbr: string) {
     let retour = true;
     for (let i = 0; i < 9; i++) {
       //y 
@@ -117,20 +196,21 @@ getGrille(x: number,y: number){
     }
     return retour;
   }
+
   verifCase(x: number, y: number, nbr: string) {
     let retour = true;
 
     //
-    let cx = x % 3;
+    //let cx = x % 3;
     let dx = Math.trunc(x / 3);
 
     //
-    let cy = y % 3;
+    //let cy = y % 3;
     let dy = Math.trunc(y / 3);
 
     // x et y reconstués
-    let coX = cx + (dx * 3);
-    let coY = cy + (dy * 3);
+    //let coX = cx + (dx * 3);
+    //let coY = cy + (dy * 3);
     /*console.log("cx", cx);
     console.log("cy", cy);
     console.log("dx", dx);
