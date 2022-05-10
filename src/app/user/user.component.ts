@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-user',
@@ -9,7 +7,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-  
+
   myD!: string[];
 
   constructor() { };

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { MatriceService } from '../matrice.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { joueur } from '../joueur';
-import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-grille',
@@ -18,20 +16,17 @@ export class GrilleComponent {
   var: Boolean = true;
   partie1Jouee: Boolean = false;
   partieFinie: Boolean = false;
-  erreurs: number[]=[0,0];
-  messageFin!:string;
+  erreurs: number[] = [0, 0];
+  messageFin!: string;
   interval!: any;
-  
+
 
   //Timer
   temps: number = 0;
   timeLeft: number = 0;
-minutes:number = Math.trunc(this.temps);
-  constructor(public matriceService: MatriceService,
-    private router:Router) { }
+  minutes: number = 0;
+  constructor(public matriceService: MatriceService) { }
 
- 
- 
   startGame() {
     this.matriceService.grille = this.matriceService.genererGrille();
     this.startTimer()
@@ -43,11 +38,10 @@ minutes:number = Math.trunc(this.temps);
   }
   endGame() {
     this.partieFinie = true;
-    if(this.joueur1.getScoreJoueur() < this.joueur2.getScoreJoueur())
-    {
+    if (this.joueur1.getScoreJoueur() < this.joueur2.getScoreJoueur()) {
       this.messageFin = "Le joueur " + this.joueur1.getNomJoueur() + " a gagné !"
     }
-    else{
+    else {
       this.messageFin = "Le joueur " + this.joueur2.getNomJoueur() + " a gagné !"
     }
   }
@@ -55,7 +49,7 @@ minutes:number = Math.trunc(this.temps);
   startTimer() {
     this.interval = setInterval(() => {
       this.temps++;
-      this.minutes=Math.trunc(this.temps/60);
+      this.minutes = Math.trunc(this.temps / 60);
     }, 1000)
   }
 
@@ -68,9 +62,9 @@ minutes:number = Math.trunc(this.temps);
 
     this.startGame();
   }
-recommencer(){
-  location.reload();
-}
+  recommencer() {
+    location.reload();
+  }
   getGrille(x: number, y: number) {
     return this.matriceService.getGrille(x, y);
   }
@@ -88,12 +82,12 @@ recommencer(){
       console.log("fini !");
       //if joueur 1 -> Restart game
       if (this.partie1Jouee == false) {
-        this.joueur1.setScoreJoueur(this.temps + this.erreurs[0]*60);
+        this.joueur1.setScoreJoueur(this.temps + this.erreurs[0] * 60);
         this.restartGame();
       }
       //if joueur 2 -> Fin game
       else {
-        this.joueur2.setScoreJoueur(this.temps + this.erreurs[1]*60);
+        this.joueur2.setScoreJoueur(this.temps + this.erreurs[1] * 60);
         this.endGame();
       }
     }
@@ -119,15 +113,14 @@ recommencer(){
         //Ajout classe erreur (affichage en rouge)
         caseSudoku.classList.add('erreur');
       }
-      
-      if (this.partie1Jouee)
-      {
+
+      if (this.partie1Jouee) {
         this.erreurs[0]++;
       }
-      else{
+      else {
         this.erreurs[1]++;
       }
-      alert("Il y a la même chiffre dans "+ (testligne ? '' : 'la ligne, ')+ (testcolonne ? '' : 'la colonne, ')+ (testCase ? '' : 'la case'));
+      alert("Il y a la même chiffre dans " + (testligne ? '' : 'la ligne, ') + (testcolonne ? '' : 'la colonne, ') + (testCase ? '' : 'la case'));
     }
     else {
       let caseSudoku = document.getElementById(`case${x}-${y}`)
@@ -191,11 +184,6 @@ recommencer(){
         }
       }
     }
-
-
-
-
-
     return retour;
   }
 

@@ -7,9 +7,8 @@ import { BrowserTransferStateModule } from '@angular/platform-browser';
 export class MatriceService {
 
   matrice: string[][] = this.createMatrice();
-  coordonnee!: number[][];
   solution: string[][] = [
-    ['3','4' , '9', '8', '1', '7', '5', '6', '2'],
+    ['3', '4', '9', '8', '1', '7', '5', '6', '2'],
     ['5', '8', '6', '4', '2', '3', '9', '7', '1'],
     ['2', '1', '7', '5', '6', '9', '8', '4', '3'],
     ['8', '6', '1', '7', '3', '4', '2', '9', '5'],
@@ -19,17 +18,13 @@ export class MatriceService {
     ['6', '9', '5', '3', '4', '1', '7', '2', '8'],
     ['4', '3', '2', '6', '7', '8', '1', '5', '9']
   ];
-  grille: string[][]= [];
+  grille: string[][] = [];
   constructor() { }
-
-  getcoordonnee() {
-    return this.coordonnee;
-  }
 
   getMatrice() {
     return this.matrice;
   }
-  getGrille(x: number, y: number){
+  getGrille(x: number, y: number) {
     return this.grille[x][y];
   }
   createMatrice() {
@@ -37,14 +32,6 @@ export class MatriceService {
     for (let x = 0; x < 9; x++) {
       this.matrice[x] = new Array(9);
     }
-    /*for (let x = 0; x < 9; x++) {
-      this.matrice[x] = [];
-      for (let y = 0; y < 9; y++) {
-        const cardMore = document.getElementById(`card${x}-${y}`);
-        this.addClass(cardMore, x, y);
-      }
-    }*/
-    /*this.updateMatrice();*/
     return this.matrice;
   }
 
@@ -53,89 +40,12 @@ export class MatriceService {
     for (let x = 0; x < 9; x++) {
       this.grille[x] = new Array(9);
       for (let y = 0; y < 9; y++) {
-
         if (Math.random() < 0.45) {
-          console.log("yolo");
           this.grille[x][y] = this.solution[x][y];
-          this.ajoutAttibutClass(x,y);
         }
-        
-
       }
     }
-    console.log("grille", this.grille);
-    console.log("solution", this.solution);
     return this.grille;
   }
 
-  ajoutAttibutClass(x: number, y: number){
-    const caseSudoku = document.getElementById(`case${x}-${y}`)
-    if (caseSudoku) {
-      console.log("GRAS")
-      caseSudoku.setAttribute('readonly', 'true');
-      caseSudoku.classList.add('gras');
-    }
-  }
-
-
-
-
-  updateMatrice() {
-    for (let x = 0; x < 9; x++) {
-      this.matrice[x] = [];
-      for (let y = 0; y < 9; y++) {
-        const cardMore = document.getElementById(`card${x}-${y}`);
-        this.addClass(cardMore, x, y);
-      }
-    }
-  }
-
-  addClass(cardMore: HTMLElement | null, x: number, y: number) {
-    if (cardMore) {
-      switch (x) {
-        case 0:
-          cardMore.classList.add("haut");
-          break;
-        case 2:
-          cardMore.classList.add("bas");
-          break;
-        case 3:
-          cardMore.classList.add("haut");
-          break;
-        case 5:
-          cardMore.classList.add("bas");
-          break;
-        case 6:
-          cardMore.classList.add('haut');
-          break;
-        case 8:
-          cardMore.classList.add('bas');
-          break;
-        default:
-          break;
-      }
-      switch (y) {
-        case 0:
-          cardMore.classList.add("gauche");
-          break;
-        case 2:
-          cardMore.classList.add("droite");
-          break;
-        case 3:
-          cardMore.classList.add("gauche");
-          break;
-        case 5:
-          cardMore.classList.add("droite");
-          break;
-        case 6:
-          cardMore.classList.add('gauche');
-          break;
-        case 8:
-          cardMore.classList.add('droite');
-          break;
-        default:
-          break;
-      }
-    }
-  }
 }

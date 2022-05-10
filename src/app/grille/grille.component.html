@@ -1,35 +1,36 @@
-
 <div *ngIf="partieFinie; then finDePartie else lejeu"></div>
-  <ng-template #finDePartie>
-      <div id="finGame" class="container bg-light bg-gradient h1 center position-absolute top-50 start-50 translate-middle mt-15">{{messageFin}}<br>
-      <button (click)="recommencer()">Recommencer</button></div>
-    
-    </ng-template>
-    <ng-template #lejeu>
-      <div *ngIf="!partieEnCours; then formulaire else jeu"></div>
-<ng-template #formulaire>
-  <app-user (sendRequestToFather)="sendData($event)"></app-user>
+<ng-template #finDePartie>
+  <div id="finGame"
+    class="container bg-light bg-gradient h1 center position-absolute top-50 start-50 translate-middle mt-15">
+    {{messageFin}}<br>
+    <button (click)="recommencer()">Recommencer</button></div>
 </ng-template>
-<div>
-  <ng-template #jeu>
-    <p></p>
-    <div id="lesJoueurs" class="container bg-light bg-gradient h1 center position-absolute top-20 start-50 translate-middle mt-5">{{joueur1.getNomJoueur()}} VS {{joueur2.getNomJoueur()}}</div>
-    <div id="grille" class="container bg-light bg-gradient border border-2 border-light position-absolute top-50 start-50 translate-middle">
-      <div>C'est le tour de <div *ngIf="!partie1Jouee; then player1 else player2"></div>
-    <ng-template #player1><span>{{joueur1.getNomJoueur()}}</span></ng-template>
-  <ng-template #player2><span>{{joueur2.getNomJoueur()}}</span></ng-template></div>
-      <div>Votre temps : {{minutes}}min et {{temps%60}}s.</div>
-      <div class="row center" *ngFor="let obj of matrice; let x = index;">
-        <div class="col-sm-auto p-0" *ngFor="let keyValues of obj; let y = index;">
-          <input class="default" id="{{'case' + x + '-' + y}}" [(ngModel)]="this.matriceService.grille[x][y]"
-            (change)="verifNombre(x,y,this.matriceService.grille[x][y])">
-        </div>
-      </div>
-      <div class="row center"><button (click)="verifSolution()"> Vérifier</button></div>
-    </div>
-    
-      
+<ng-template #lejeu>
+  <div *ngIf="!partieEnCours; then formulaire else jeu"></div>
+  <ng-template #formulaire>
+    <app-user (sendRequestToFather)="sendData($event)"></app-user>
   </ng-template>
-</div>
+  <div>
+    <ng-template #jeu>
+      <p></p>
+      <div id="lesJoueurs"
+        class="container bg-light bg-gradient h1 center position-absolute top-20 start-50 translate-middle mt-5">
+        {{joueur1.getNomJoueur()}} VS {{joueur2.getNomJoueur()}}</div>
+      <div id="grille"
+        class="container bg-light bg-gradient border border-2 border-light position-absolute top-50 start-50 translate-middle">
+        <div>C'est le tour de <div *ngIf="!partie1Jouee; then player1 else player2"></div>
+          <ng-template #player1><span>{{joueur1.getNomJoueur()}}</span></ng-template>
+          <ng-template #player2><span>{{joueur2.getNomJoueur()}}</span></ng-template>
+        </div>
+        <div>Votre temps : {{minutes}}min et {{temps%60}}s.</div>
+        <div class="row center" *ngFor="let obj of matrice; let x = index;">
+          <div class="col-sm-auto p-0" *ngFor="let keyValues of obj; let y = index;">
+            <input class="default" id="{{'case' + x + '-' + y}}" [(ngModel)]="this.matriceService.grille[x][y]"
+              (change)="verifNombre(x,y,this.matriceService.grille[x][y])">
+          </div>
+        </div>
+        <div class="row center"><button (click)="verifSolution()"> Vérifier</button></div>
+      </div>
     </ng-template>
-
+  </div>
+</ng-template>
